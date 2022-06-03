@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#6480E4"
+        android:background="#4158AC"
         android:padding="16dp">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -34,9 +34,10 @@
             android:layout_marginBottom="48dp"
             android:clickable="true"
             android:contentDescription="TODO"
+            app:backgroundTint="#26347E"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@android:drawable/ic_input_add" />
+            app:srcCompat="@android:drawable/ic_menu_edit" />
 
         <Button
             android:id="@+id/clearButton"
@@ -45,6 +46,7 @@
             android:layout_marginEnd="150dp"
             android:layout_marginBottom="48dp"
             android:text="Clear notes"
+            app:backgroundTint="#101949"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/addNoteButton"
             app:layout_constraintHorizontal_bias="0.19"

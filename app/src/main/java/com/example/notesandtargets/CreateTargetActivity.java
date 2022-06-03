@@ -8,35 +8,30 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.notesandtargets.models.Note;
+import com.example.notesandtargets.models.Target;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class CreateNoteActivity extends AppCompatActivity {
+import java.util.Date;
+
+public class CreateTargetActivity extends AppCompatActivity {
     private EditText DescriptionEditText;
-    private EditText TitleEditText;
-    private Button createNoteButton;
+    private Button createTargetButton;
     private DatabaseReference database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_note);
-
+        setContentView(R.layout.activity_create_target);
 
         initViews();
 
-        createNoteButton.setOnClickListener(new View.OnClickListener() {
+        createTargetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String title = TitleEditText.getText().toString();
                 String desription = DescriptionEditText.getText().toString();
-
-                if (title.isEmpty()){
-                    showMessage("Title is empty!");
-                    title = "Title";
-                    return;
-                }
+                Date creationDate = new Date();
+                Boolean isChecked = false;
 
                 if (desription.isEmpty()){
                     showMessage("Desription is empty!");
@@ -44,33 +39,28 @@ public class CreateNoteActivity extends AppCompatActivity {
                     return;
                 }
 
-
                 database = FirebaseDatabase.getInstance("https://notesandtargets-default-rtdb.europe-west1.firebasedatabase.app/")
-                        .getReference().child("notes");
+                        .getReference().child("targets");
 
                 DatabaseReference pushKey = database.push();
-
-
-                Note note = new Note(title,desription,pushKey.getKey());
-                pushKey.setValue(note);
+                Target target = new Target(desription,creationDate,isChecked,pushKey.getKey());
+                pushKey.setValue(target);
 
                 finish();
             }
         });
 
 
-    };
-
-
+    }
 
     void initViews(){
-        DescriptionEditText = findViewById(R.id.descriptionEditText);
-        TitleEditText = findViewById(R.id.titleEditText);
-        createNoteButton = findViewById(R.id.createNoteButton);
+        DescriptionEditText = findViewById(R.id.DescriptionEditText);
+        createTargetButton = findViewById(R.id.createTargetButton);
 
     }
 
     void showMessage(String msg){
         Toast.makeText(getBaseContext(), msg, Toast.LENGTH_SHORT).show();
     }
+
 }

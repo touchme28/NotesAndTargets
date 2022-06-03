@@ -15,6 +15,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
+
+
     BottomNavigationView BottomNavView;
 
     NoteFragment noteFragment = new NoteFragment();

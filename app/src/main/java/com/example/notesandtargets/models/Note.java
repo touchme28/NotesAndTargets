@@ -3,15 +3,17 @@ package com.example.notesandtargets.models;
 public class Note {
     private String title;
     private String description;
+    private String uid;
 
     public Note(){
         title = "title";
         description = "description";
     }
 
-    public Note(String title,String description) {
+    public Note(String title,String description,String uid) {
         this.title = title;
         this.description = description;
+        this.uid = uid;
     }
 
     @Override
@@ -19,10 +21,13 @@ public class Note {
         return "Note{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
+                ", uid='" + uid + '\'' +
                 '}';
     }
 
-
+    public String getUid() {
+        return uid;
+    }
 
     public String getTitle() {
         return title;
